@@ -14,6 +14,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MakeLogo from "../../../public/logo-100px.png";
 import { AccountBalance, ChevronLeft, ChevronRight, Menu, Analytics, Inventory, AutoAwesome, AutoMode, PrivacyTip, Gavel, Settings }from '@mui/icons-material';
+import { useState } from "react";
 
 const drawerWidth = 240;
 
@@ -114,31 +115,31 @@ export default function MuiSidebar() {
     {
       name: "Billing",
       description: "Make a complete analysis of your customers billing",
-      href: "/billing",
+      href: "#",
       icon: AccountBalance,
     },
     {
       name: "Dashboard",
       description: "See your dashboard",
-      href: "/dashboard",
+      href: "#",
       icon: Analytics,
     },
     {
       name: "Products",
       description: "See all your active products",
-      href: "/products",
+      href: "#",
       icon: Inventory,
     },
     {
       name: "Integrations",
       description: "Connect with third-party applications",
-      href: "/integrations",
+      href: "#",
       icon: AutoAwesome,
     },
     {
       name: "Automations",
       description: "Automate your processes",
-      href: "/automations",
+      href: "#",
       icon: AutoMode,
     },
   ];
@@ -220,9 +221,9 @@ export default function MuiSidebar() {
                     justifyContent: "center",
                   }}
                 >
-                  <item.icon className="icon"/> 
+                  <item.icon className='icon'/> 
                 </ListItemIcon>
-                <ListItemText  primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText className="menuText" primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
@@ -249,7 +250,7 @@ export default function MuiSidebar() {
                 >
                   <config.icon className="icon" />
                 </ListItemIcon>
-                <ListItemText  primary={config.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText className="menuText" primary={config.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}

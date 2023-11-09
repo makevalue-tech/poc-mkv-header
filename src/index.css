@@ -5,3 +5,12 @@
 .sideButton:hover .icon {
   @apply text-sky-400
 }
+.sideButton:focus {
+  .icon {
+    @apply text-sky-400
+  }
+  .menuText {
+    @apply text-sky-500
+  }
+  
+}
