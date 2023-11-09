@@ -15,6 +15,7 @@ import ListItemText from "@mui/material/ListItemText";
 import MakeLogo from "../../../public/logo-100px.png";
 import { AccountBalance, ChevronLeft, ChevronRight, Menu, Analytics, Inventory, AutoAwesome, AutoMode, PrivacyTip, Gavel, Settings }from '@mui/icons-material';
 import { useState } from "react";
+import Table from "../table/Table";
 
 const drawerWidth = 240;
 
@@ -256,9 +257,9 @@ export default function MuiSidebar() {
           ))}
         </List>
       </Drawer>
-      <Box className="h-screen bg-zinc-100" component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box className="h-screen max-w-full bg-zinc-100" component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader  />
-        
+        <Table />
       </Box>
     </Box>
   );
