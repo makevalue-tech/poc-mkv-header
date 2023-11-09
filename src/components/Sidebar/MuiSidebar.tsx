@@ -13,7 +13,20 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MakeLogo from "../../../public/logo-100px.png";
-import { AccountBalance, ChevronLeft, ChevronRight, Menu, Analytics, Inventory, AutoAwesome, AutoMode, PrivacyTip, Gavel, Settings }from '@mui/icons-material';
+import {
+  AccountBalance,
+  ChevronLeft,
+  ChevronRight,
+  Menu,
+  Analytics,
+  Inventory,
+  AutoAwesome,
+  AutoMode,
+  PrivacyTip,
+  Gavel,
+  Settings,
+  Search,
+} from "@mui/icons-material";
 import { useState } from "react";
 import Table from "../table/Table";
 
@@ -111,7 +124,7 @@ export default function MuiSidebar() {
       href: "/settings",
       icon: Settings,
     },
-  ]
+  ];
   const products = [
     {
       name: "Billing",
@@ -173,16 +186,31 @@ export default function MuiSidebar() {
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 2,
+              marginRight: 0,
               ...(open && { display: "none" }),
             }}
           >
             <Menu />
           </IconButton>
+          <div className="w-full flex justify-between">
+            <div className="ml-2 flex justify-start items-center relative">
+              <input
+                className="text-black border w-2/3 border-slate-200 rounded-lg pl-2  outline-sky-500"
+                placeholder="Search..."
+              />
+              <Search
+                fontSize="small"
+                className="text-gray-400 absolute ml-24"
+              />
+            </div>
+            <div>
+              <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
+            </div>
+          </div>
         </Toolbar>
       </AppBar>
-      <Drawer  variant="permanent" open={open}>
-        <DrawerHeader sx={{justifyContent: 'space-around'}} >
+      <Drawer variant="permanent" open={open}>
+        <DrawerHeader sx={{ justifyContent: "space-around" }}>
           <div className="flex">
             {open && (
               <img
@@ -196,17 +224,18 @@ export default function MuiSidebar() {
           </div>
 
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "rtl" ? (
-              <ChevronRight />
-            ) : (
-              <ChevronLeft />
-            )}
+            {theme.direction === "rtl" ? <ChevronRight /> : <ChevronLeft />}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
           {products.map((item, index) => (
-            <ListItem key={index} className="hover:text-sky-500"  disablePadding sx={{ display: "block" }}>
+            <ListItem
+              key={index}
+              className="hover:text-sky-500"
+              disablePadding
+              sx={{ display: "block" }}
+            >
               <ListItemButton
                 className="sideButton"
                 sx={{
@@ -222,9 +251,13 @@ export default function MuiSidebar() {
                     justifyContent: "center",
                   }}
                 >
-                  <item.icon className='icon'/> 
+                  <item.icon className="icon" />
                 </ListItemIcon>
-                <ListItemText className="menuText" primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  className="menuText"
+                  primary={item.name}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
@@ -232,9 +265,14 @@ export default function MuiSidebar() {
         <Divider />
         <List>
           {configs.map((config) => (
-            <ListItem key={config.name} className="hover:text-sky-500" disablePadding sx={{ display: "block" }}>
+            <ListItem
+              key={config.name}
+              className="hover:text-sky-500"
+              disablePadding
+              sx={{ display: "block" }}
+            >
               <ListItemButton
-              className="sideButton"
+                className="sideButton"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -242,7 +280,6 @@ export default function MuiSidebar() {
                 }}
               >
                 <ListItemIcon
-                
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
@@ -251,14 +288,22 @@ export default function MuiSidebar() {
                 >
                   <config.icon className="icon" />
                 </ListItemIcon>
-                <ListItemText className="menuText" primary={config.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText
+                  className="menuText"
+                  primary={config.name}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <Box className="h-screen max-w-full bg-zinc-100" component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader  />
+      <Box
+        className="h-screen max-w-full bg-zinc-100"
+        component="main"
+        sx={{ flexGrow: 1, p: 3 }}
+      >
+        <DrawerHeader />
         <Table />
       </Box>
     </Box>
