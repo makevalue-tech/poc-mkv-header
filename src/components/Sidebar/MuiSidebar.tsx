@@ -6,19 +6,14 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import MakeLogo from "../../../public/logo-100px.png";
+import { AccountBalance, ChevronLeft, ChevronRight, Menu, Analytics, Inventory, AutoAwesome, AutoMode, PrivacyTip, Gavel, Settings }from '@mui/icons-material';
 
 const drawerWidth = 240;
 
@@ -95,6 +90,59 @@ export default function MuiSidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const configs = [
+    {
+      name: "Privacy policy",
+      description: "See our privacy policy",
+      href: "/policy",
+      icon: PrivacyTip,
+    },
+    {
+      name: "Terms of service",
+      description: "See our terms of service",
+      href: "/terms",
+      icon: Gavel,
+    },
+    {
+      name: "Settings",
+      description: "Open settings",
+      href: "/settings",
+      icon: Settings,
+    },
+  ]
+  const products = [
+    {
+      name: "Billing",
+      description: "Make a complete analysis of your customers billing",
+      href: "/billing",
+      icon: AccountBalance,
+    },
+    {
+      name: "Dashboard",
+      description: "See your dashboard",
+      href: "/dashboard",
+      icon: Analytics,
+    },
+    {
+      name: "Products",
+      description: "See all your active products",
+      href: "/products",
+      icon: Inventory,
+    },
+    {
+      name: "Integrations",
+      description: "Connect with third-party applications",
+      href: "/integrations",
+      icon: AutoAwesome,
+    },
+    {
+      name: "Automations",
+      description: "Automate your processes",
+      href: "/automations",
+      icon: AutoMode,
+    },
+  ];
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -127,34 +175,38 @@ export default function MuiSidebar() {
               ...(open && { display: "none" }),
             }}
           >
-            <MenuIcon />
+            <Menu />
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          {open && (
-            <img
-              src={MakeLogo}
-              alt="logo makevalue"
-              className="mr-5"
-              width={30}
-            />
-          )}
-          <h1>Make Value</h1>
+      <Drawer  variant="permanent" open={open}>
+        <DrawerHeader sx={{justifyContent: 'space-around'}} >
+          <div className="flex">
+            {open && (
+              <img
+                src={MakeLogo}
+                alt="logo makevalue"
+                className="mr-5"
+                width={30}
+              />
+            )}
+            <h1 className="text-gray-500 font-bold">MakeValue</h1>
+          </div>
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
-              <ChevronRightIcon />
+              <ChevronRight />
             ) : (
-              <ChevronLeftIcon />
+              <ChevronLeft />
             )}
           </IconButton>
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {products.map((item, index) => (
+            <ListItem key={index} className="hover:text-sky-500"  disablePadding sx={{ display: "block" }}>
               <ListItemButton
+                className="sideButton"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -168,18 +220,19 @@ export default function MuiSidebar() {
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <item.icon className="icon"/> 
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText  primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+          {configs.map((config) => (
+            <ListItem key={config.name} className="hover:text-sky-500" disablePadding sx={{ display: "block" }}>
               <ListItemButton
+              className="sideButton"
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -187,51 +240,24 @@ export default function MuiSidebar() {
                 }}
               >
                 <ListItemIcon
+                
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
                     justifyContent: "center",
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  <config.icon className="icon" />
                 </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText  primary={config.name} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+      <Box className="h-screen bg-zinc-100" component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader  />
+        
       </Box>
     </Box>
   );
