@@ -10,7 +10,8 @@
     @apply text-sky-400
   }
   .menuText {
-    @apply text-sky-500
+    @apply text-sky-500;
   }
   
 }
+
