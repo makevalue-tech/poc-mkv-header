@@ -30,6 +30,9 @@ import {
   Campaign,
   CandlestickChart,
   CrisisAlert,
+  Adb,
+  AddToHomeScreen,
+  AddLocation,
 } from "@mui/icons-material";
 import { useState } from "react";
 import Table from "../table/Table";
@@ -111,12 +114,7 @@ export default function MuiSidebar() {
   const [open, setOpen] = React.useState(false);
 
   const productsList = [
-    {
-      name: "Product 1",
-      description: "See product1",
-      href: "/product1",
-      icon: Campaign,
-    },
+    
     {
       name: "Product 2",
       description: "See product2",
@@ -193,6 +191,7 @@ export default function MuiSidebar() {
   };
 
   const [productsClicked, setProductsClicked] = useState(false);
+  const [subProductsClicked, setSubProductsClicked] = useState(false);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -289,17 +288,178 @@ export default function MuiSidebar() {
                 primary="Products"
                 sx={{ opacity: open ? 1 : 0 }}
               />
+              {open ? <ChevronDownIcon className="text-gray-400 " /> : null}
             </ListItemButton>
           </ListItem>
+          {productsClicked ? (
+            <ListItem
+            className={
+              open ? `hover:text-sky-500 ml-2` : `hover:text-sky-500 ml-1`
+            }
+            disablePadding
+            sx={{ display: "block" }}
+          >
+            <ListItemButton
+              onClick={() => {
+                setSubProductsClicked(!subProductsClicked);
+              }}
+              className="sideButton"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                }}
+              >
+                <Campaign fontSize="small" className="icon text-gray-500" />
+              </ListItemIcon>
+
+              <ListItemText
+                className="menuText text-gray-500"
+                primary="Product 1"
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+              {open ? (
+                      <ChevronDownIcon className="w-6 text-gray-400 " />
+                    ) : null}
+            </ListItemButton>
+            { subProductsClicked ?  (
+                    
+                    <div>
+                      <ListItem
+                        key={134523}
+                        className={
+                          open
+                            ? `hover:text-sky-500 ml-2`
+                            : `hover:text-sky-500 ml-1`
+                        }
+                        disablePadding
+                        sx={{ display: "block" }}
+                      >
+                        <ListItemButton
+                          className="sideButton"
+                          sx={{
+                            minHeight: 48,
+                            justifyContent: open ? "initial" : "center",
+                            px: 2.5,
+                          }}
+                        >
+                          <ListItemIcon
+                            sx={{
+                              minWidth: 0,
+                              mr: open ? 3 : "auto",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Adb
+                              fontSize="small"
+                              className="icon text-gray-500"
+                            />
+                          </ListItemIcon>
+                          <ListItemText
+                            className="menuText text-gray-500"
+                            primary='Sub-product 1'
+                            sx={{ opacity: open ? 1 : 0 }}
+                          />
+                        </ListItemButton>
+                      </ListItem>
+                      <ListItem
+                      key={213534}
+                      className={
+                        open
+                          ? `hover:text-sky-500 ml-2`
+                          : `hover:text-sky-500 ml-1`
+                      }
+                      disablePadding
+                      sx={{ display: "block" }}
+                    >
+                      <ListItemButton
+                        className="sideButton"
+                        sx={{
+                          minHeight: 48,
+                          justifyContent: open ? "initial" : "center",
+                          px: 2.5,
+                        }}
+                      >
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : "auto",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <AddToHomeScreen
+                            fontSize="small"
+                            className="icon text-gray-500"
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          className="menuText text-gray-500"
+                          primary='Sub-product 1'
+                          sx={{ opacity: open ? 1 : 0 }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem
+                      key={5342521}
+                      className={
+                        open
+                          ? `hover:text-sky-500 ml-2`
+                          : `hover:text-sky-500 ml-1`
+                      }
+                      disablePadding
+                      sx={{ display: "block" }}
+                    >
+                      <ListItemButton
+                        className="sideButton"
+                        sx={{
+                          minHeight: 48,
+                          justifyContent: open ? "initial" : "center",
+                          px: 2.5,
+                        }}
+                      >
+                        <ListItemIcon
+                          sx={{
+                            minWidth: 0,
+                            mr: open ? 3 : "auto",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <AddLocation
+                            fontSize="small"
+                            className="icon text-gray-500"
+                          />
+                        </ListItemIcon>
+                        <ListItemText
+                          className="menuText text-gray-500"
+                          primary='Sub-product 1'
+                          sx={{ opacity: open ? 1 : 0 }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                    </div>
+                    
+                  ) : null}
+          </ListItem>
+          ): null}
           {productsClicked
             ? productsList.map((item, index) => (
                 <ListItem
                   key={index}
-                  className={open ? `hover:text-sky-500 ml-2`:`hover:text-sky-500 ml-1`}
+                  className={
+                    open ? `hover:text-sky-500 ml-2` : `hover:text-sky-500 ml-1`
+                  }
                   disablePadding
-                  sx={{ display: "block", fontSize:"0.25rem" }}
+                  sx={{ display: "block", fontSize: "0.25rem" }}
                 >
                   <ListItemButton
+                    
                     className="sideButton "
                     sx={{
                       minHeight: 48,
@@ -314,19 +474,22 @@ export default function MuiSidebar() {
                         justifyContent: "center",
                       }}
                     >
-                      <item.icon fontSize="small" className="icon text-sky-900" />
+                      <item.icon
+                        fontSize="small"
+                        className="icon text-gray-500"
+                      />
                     </ListItemIcon>
                     <ListItemText
-                      className="menuText text-sky-900"
+                      className="menuText text-gray-500"
                       primary={item.name}
                       sx={{ opacity: open ? 1 : 0 }}
                     />
+                    
                   </ListItemButton>
                 </ListItem>
               ))
-            : 
-            null
-            }
+            : null}
+
           {products.map((item, index) => (
             <ListItem
               key={index}
@@ -389,7 +552,7 @@ export default function MuiSidebar() {
                 <ListItemText
                   className="menuText"
                   primary={config.name}
-                  sx={{ opacity: open ? 1 : 0}}
+                  sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
             </ListItem>
