@@ -1,10 +1,10 @@
 import MuiSidebar from "../Sidebar/MuiSidebar"
-import Table from "../Table/Table"
+import TreeGrid from "../TreeGrid/TreeGrid"
 
 function App() {
   return (
     <>
-     <MuiSidebar children={<Table/>}/>
+     <MuiSidebar children={<TreeGrid/>}/>
     </>
   )
 }
