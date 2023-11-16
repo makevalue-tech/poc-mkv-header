@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { useMovieData } from "@mui/x-data-grid-generator";
 import {
   DataGridPremium,
   GridColDef,
