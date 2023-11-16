@@ -10,7 +10,7 @@ export default function Table() {
     rowLength: 100000,
     editable: true,
   });
-  const [content, setContent] = useState<string | null>(null)
+  const [, setContent] = useState<string | null>(null)
   const eventListener = useCallback((event: any) => {
     console.log('evento:', event);
   }, []);
