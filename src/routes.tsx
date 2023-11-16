@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/operations',
+    path: '/poc-mkv-header/operations',
     element: <Operations />,
   }
 ])
