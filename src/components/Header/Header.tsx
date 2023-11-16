@@ -1,6 +1,6 @@
 import { BellAlertIcon } from "@heroicons/react/20/solid";
 import { Search, Settings } from "@mui/icons-material";
-import { AppBar, IconButton, Menu, Toolbar } from "@mui/material";
+import { AppBar, Toolbar } from "@mui/material";
 import MakeLogo from "../../../public/logo-100px.png";
 import { Link } from "react-router-dom";
 

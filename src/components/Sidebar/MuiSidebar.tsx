@@ -35,7 +35,6 @@ import {
   AddLocation,
 } from "@mui/icons-material";
 import { useState } from "react";
-import Table from "../Table/Table";
 import { BellAlertIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 
@@ -565,6 +564,7 @@ export default function MuiSidebar({
         sx={{ flexGrow: 1, p: 3 }}
       >
         <DrawerHeader />
+        {children}
       </Box>
     </Box>
   );

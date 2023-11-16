@@ -1,4 +1,3 @@
-import Header from "../Header/Header"
 import MuiSidebar from "../Sidebar/MuiSidebar"
 import Table from "../Table/Table"
 
