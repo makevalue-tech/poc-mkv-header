@@ -15,10 +15,10 @@ const currencyFormatter = new Intl.NumberFormat("en-US", {
 });
 
 const COLUMNS: GridColDef[] = [
-  { field: "agency", headerName: "Agency", width: 200 },
+  { field: "company", headerName: "Company", width: 200 },
   {
-    field: "company",
-    headerName: "Company",
+    field: "agency",
+    headerName: "Agency",
     width: 200,
   },
   {
@@ -27,8 +27,8 @@ const COLUMNS: GridColDef[] = [
     width: 200,
   },
   {
-    field: "value",
-    headerName: "Value",
+    field: "gross",
+    headerName: "Gross",
     type: "number",
     width: 150,
     groupable: false,
@@ -49,77 +49,77 @@ export default function AggregationGetAggregationPosition() {
         company: "0001",
         agency: "5954",
         account: "0003458-8",
-        value: 183,
+        gross: 183,
       },
       {
         id: 2,
         company: "0001",
         agency: "5954",
         account: "0003458-8",
-        value: 95,
+        gross: 95,
       },
       {
         id: 3,
         company: "0001",
         agency: "5954",
         account: "0003458-8",
-        value: 19700,
+        gross: 19700,
       },
       {
         id: 4,
         company: "0001",
         agency: "5954",
         account: "0003458-8",
-        value: 23500,
+        gross: 23500,
       },
       {
         id: 5,
         company: "0001",
         agency: "5731",
         account: "00003642-5",
-        value: 14300,
+        gross: 14300,
       },
       {
         id: 6,
         company: "0001",
         agency: "5731",
         account: "00003642-5",
-        value: 12000,
+        gross: 12000,
       },
       {
         id: 7,
         company: "0001",
         agency: "5731",
         account: "00003642-5",
-        value: 1560,
+        gross: 1560,
       },
       {
         id: 8,
         company: "0001",
         agency: "5731",
         account: "00002324-5",
-        value: 1320,
+        gross: 1320,
       },
       {
         id: 9,
         company: "0001",
         agency: "5731",
         account: "00002324-5",
-        value: 125,
+        gross: 125,
       },
       {
         id: 10,
         company: "0001",
         agency: "5954",
         account: "0001540-8",
-        value: 277,
+        gross: 277,
       },
       {
         id: 11,
         company: "0001",
         agency: "5954",
         account: "0001540-8",
-        value: 1900,
+        gross: 1900,
       },
     ],
   };
@@ -133,7 +133,7 @@ export default function AggregationGetAggregationPosition() {
       },
       aggregation: {
         model: {
-          value: "sum",
+          gross: "sum",
         },
       },
     },
@@ -156,14 +156,13 @@ export default function AggregationGetAggregationPosition() {
           columns={COLUMNS}
           disableRowSelectionOnClick
           initialState={initialState}
+          rowGroupingColumnMode="multiple"
           getCellClassName={(params: GridCellParams<any, any, number>) => {
             if (params.field != 'value' || params.value == null) {
               return '';
             }
             return params.field === 'value' ? 'sum' : ''; }}
-          getAggregationPosition={(groupNode) =>
-            groupNode.depth === -1 ? null : "footer"
-          }
+            
         />
       </Box>
     </div>
