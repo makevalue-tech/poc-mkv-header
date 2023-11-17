@@ -1,11 +1,15 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import {
   DataGridPremium,
   GridColDef,
   useGridApiRef,
   useKeepGroupedColumnsHidden,
 } from "@mui/x-data-grid-premium";
-import { GridCellParams } from "@mui/x-data-grid-pro";
+import {
+  GridCellParams,
+  GridGroupNode,
+} from "@mui/x-data-grid-pro";
+import React, { useState } from "react";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -42,6 +46,17 @@ const COLUMNS: GridColDef[] = [
 ];
 
 export default function AggregationGetAggregationPosition() {
+  const apiRef = useGridApiRef();
+
+  const [expanded, setExpanded] = useState(0);
+
+  const debug = (params: GridGroupNode) =>
+    console.info("Row expansion changed for row ", params.id);
+
+  React.useEffect(() => {
+    apiRef.current.subscribeEvent("rowExpansionChange", debug);
+  }, [apiRef]);
+
   const data = {
     rows: [
       {
@@ -123,7 +138,7 @@ export default function AggregationGetAggregationPosition() {
       },
     ],
   };
-  const apiRef = useGridApiRef();
+
 
   const initialState = useKeepGroupedColumnsHidden({
     apiRef,
@@ -139,31 +154,44 @@ export default function AggregationGetAggregationPosition() {
     },
   });
 
+ 
+  
+
+
   return (
     <div style={{ height: 370, width: "100%" }}>
       <Box
-      sx={{
-        "& .MuiDataGrid-footerCell": {
-          backgroundColor: "#b9d5ff91",
-          color: "#1a3e72",
-        },
-      }}
+        sx={{
+          "& .MuiDataGrid-footerCell": {
+            backgroundColor: "#b9d5ff91",
+            color: "#1a3e72",
+          },
+        }}
       >
-        <DataGridPremium
-          
-          {...data}
-          apiRef={apiRef}
-          columns={COLUMNS}
-          disableRowSelectionOnClick
-          initialState={initialState}
-          rowGroupingColumnMode="multiple"
-          getCellClassName={(params: GridCellParams<any, any, number>) => {
-            if (params.field != 'value' || params.value == null) {
-              return '';
-            }
-            return params.field === 'value' ? 'sum' : ''; }}
+        <Button
+          size="small"
+          onClick={() => expanded === 0 ? setExpanded(-1) : setExpanded(0) }
+        >
+          {expanded === 0 ? "Expand All" : "Collapse All"}
+        </Button>
+        <Box>
+          <DataGridPremium
+            {...data}
+            apiRef={apiRef}
             
-        />
+            columns={COLUMNS}
+            defaultGroupingExpansionDepth={expanded}
+            disableRowSelectionOnClick
+            initialState={initialState}
+            rowGroupingColumnMode="multiple"
+            getCellClassName={(params: GridCellParams<any, any, number>) => {
+              if (params.field != "value" || params.value == null) {
+                return "";
+              }
+              return params.field === "value" ? "sum" : "";
+            }}
+          />
+        </Box>
       </Box>
     </div>
   );
