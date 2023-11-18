@@ -6,11 +6,11 @@ import Home from "./components/Home/Home";
 export const router = createBrowserRouter([
   
   {
-    path: '/poc-mkv-header/',
+    path: '/poc-mkv-header/operations',
     element: <Operations />,
   },
   {
-    path: '/poc-mkv-header/operations',
+    path: '/poc-mkv-header/',
     element: <Home />,
   }
 ])

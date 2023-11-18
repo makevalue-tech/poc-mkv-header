@@ -33,6 +33,20 @@ import {
   Adb,
   AddToHomeScreen,
   AddLocation,
+  BarChart,
+  PieChart,
+  LocalAtm,
+  CenterFocusStrong,
+  House,
+  Savings,
+  CarRental,
+  LocalShipping,
+  ListAlt,
+  LocationCity,
+  PriceCheck,
+  AccountTree,
+  Addchart,
+  Warning,
 } from "@mui/icons-material";
 import { useState } from "react";
 import { BellAlertIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
@@ -119,14 +133,14 @@ export default function MuiSidebar({
 
   const productsList = [
     {
-      name: "Product 2",
-      description: "See product2",
+      name: "Relatório 2",
+      description: "See report2",
       href: "/product2",
       icon: CandlestickChart,
     },
     {
-      name: "Product 3",
-      description: "See product3",
+      name: "Relatório 3",
+      description: "See report3",
       href: "/product3",
       icon: CrisisAlert,
     },
@@ -154,34 +168,94 @@ export default function MuiSidebar({
   ];
   const products = [
     {
-      name: "Billing",
+      name: "Investimento",
       description: "Make a complete analysis of your customers billing",
       href: "#",
-      icon: AccountBalance,
+      icon: BarChart,
     },
     {
-      name: "Dashboard",
+      name: "Empréstimo",
       description: "See your dashboard",
+      href: "#",
+      icon: PieChart,
+    },
+    {
+      name: "Derivativo",
+      description: "See all your active products",
+      href: "#",
+      icon: LocalAtm,
+    },
+    {
+      name: "Mutuo",
+      description: "Connect with third-party applications",
+      href: "#",
+      icon: CenterFocusStrong,
+    },
+    {
+      name: "Garantia",
+      description: "Automate your processes",
+      href: "#",
+      icon: House,
+    },
+    {
+      name: "Seguros e Obrigações",
+      description: "Automate your processes",
+      href: "#",
+      icon: Savings,
+    },
+    {
+      name: "Arrendamento",
+      description: "Automate your processes",
+      href: "#",
+      icon: CarRental,
+    },
+    {
+      name: "Consórcio",
+      description: "Automate your processes",
+      href: "#",
+      icon: LocalShipping,
+    },
+    {
+      name: "AVP",
+      description: "Automate your processes",
+      href: "#",
+      icon: ListAlt,
+    },
+    {
+      name: "CBios",
+      description: "Automate your processes",
+      href: "#",
+      icon: LocationCity,
+    },
+    {
+      name: "Dividendos",
+      description: "Automate your processes",
+      href: "#",
+      icon: PriceCheck,
+    },
+    {
+      name: "Contábil",
+      description: "Automate your processes",
+      href: "#",
+      icon: AccountTree,
+    },
+    {
+      name: "Relatório",
+      description: "Automate your processes",
       href: "#",
       icon: Analytics,
     },
     {
-      name: "Products",
-      description: "See all your active products",
-      href: "#",
-      icon: Inventory,
-    },
-    {
-      name: "Integrations",
-      description: "Connect with third-party applications",
-      href: "#",
-      icon: AutoAwesome,
-    },
-    {
-      name: "Automations",
+      name: "Dashboard",
       description: "Automate your processes",
       href: "#",
-      icon: AutoMode,
+      icon: Addchart,
+    },
+    {
+      name: "Controle de Risco",
+      description: "Automate your processes",
+      href: "#",
+      icon: Warning,
     },
   ];
 
@@ -202,15 +276,14 @@ export default function MuiSidebar({
       <AppBar position="fixed" open={open}>
         <Toolbar className="bg-white">
           {!open && (
-            <Link to='/poc-mkv-header/'>
+            <Link to="/poc-mkv-header/">
               <img
-              src={MakeLogo}
-              alt="logo makevalue"
-              className="mr-5"
-              width={30}
-            />
+                src={MakeLogo}
+                alt="logo makevalue"
+                className="mr-5"
+                width={30}
+              />
             </Link>
-            
           )}
 
           <IconButton
@@ -247,12 +320,14 @@ export default function MuiSidebar({
         <DrawerHeader sx={{ justifyContent: "space-around" }}>
           <div className="flex">
             {open && (
-              <img
-                src={MakeLogo}
-                alt="logo makevalue"
-                className="mr-5"
-                width={30}
-              />
+              <Link to={"/poc-mkv-header/"}>
+                <img
+                  src={MakeLogo}
+                  alt="logo makevalue"
+                  className="mr-5"
+                  width={30}
+                />
+              </Link>
             )}
             <h1 className="text-gray-500 font-bold">MakeValue</h1>
           </div>
@@ -263,231 +338,7 @@ export default function MuiSidebar({
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem
-            className="hover:text-sky-500"
-            disablePadding
-            sx={{ display: "block" }}
-          >
-            <ListItemButton
-              onClick={() => {
-                setProductsClicked(!productsClicked);
-              }}
-              className="sideButton"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                <Category className="icon" />
-              </ListItemIcon>
-
-              <ListItemText
-                className="menuText"
-                primary="Products"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
-              {open ? <ChevronDownIcon className="text-gray-400 " /> : null}
-            </ListItemButton>
-          </ListItem>
-          {productsClicked ? (
-            <ListItem
-              className={
-                open ? `hover:text-sky-500 ml-2` : `hover:text-sky-500 ml-1`
-              }
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                onClick={() => {
-                  setSubProductsClicked(!subProductsClicked);
-                }}
-                className="sideButton"
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Campaign fontSize="small" className="icon text-gray-500" />
-                </ListItemIcon>
-
-                <ListItemText
-                  className="menuText text-gray-500"
-                  primary="Product 1"
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-                {open ? (
-                  <ChevronDownIcon className="w-6 text-gray-400 " />
-                ) : null}
-              </ListItemButton>
-              {subProductsClicked ? (
-                <div>
-                  <ListItem
-                    key={134523}
-                    className={
-                      open
-                        ? `hover:text-sky-500 ml-2`
-                        : `hover:text-sky-500 ml-1`
-                    }
-                    disablePadding
-                    sx={{ display: "block" }}
-                  >
-                    <ListItemButton
-                      className="sideButton"
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 2.5,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Adb fontSize="small" className="icon text-gray-500" />
-                      </ListItemIcon>
-                      <ListItemText
-                        className="menuText text-gray-500"
-                        primary="Sub-product 1"
-                        sx={{ opacity: open ? 1 : 0 }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem
-                    key={213534}
-                    className={
-                      open
-                        ? `hover:text-sky-500 ml-2`
-                        : `hover:text-sky-500 ml-1`
-                    }
-                    disablePadding
-                    sx={{ display: "block" }}
-                  >
-                    <ListItemButton
-                      className="sideButton"
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 2.5,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <AddToHomeScreen
-                          fontSize="small"
-                          className="icon text-gray-500"
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        className="menuText text-gray-500"
-                        primary="Sub-product 1"
-                        sx={{ opacity: open ? 1 : 0 }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                  <ListItem
-                    key={5342521}
-                    className={
-                      open
-                        ? `hover:text-sky-500 ml-2`
-                        : `hover:text-sky-500 ml-1`
-                    }
-                    disablePadding
-                    sx={{ display: "block" }}
-                  >
-                    <ListItemButton
-                      className="sideButton"
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 2.5,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <AddLocation
-                          fontSize="small"
-                          className="icon text-gray-500"
-                        />
-                      </ListItemIcon>
-                      <ListItemText
-                        className="menuText text-gray-500"
-                        primary="Sub-product 1"
-                        sx={{ opacity: open ? 1 : 0 }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </div>
-              ) : null}
-            </ListItem>
-          ) : null}
-          {productsClicked
-            ? productsList.map((item, index) => (
-                <ListItem
-                  key={index}
-                  className={
-                    open ? `hover:text-sky-500 ml-2` : `hover:text-sky-500 ml-1`
-                  }
-                  disablePadding
-                  sx={{ display: "block", fontSize: "0.25rem" }}
-                >
-                  <ListItemButton
-                    className="sideButton "
-                    sx={{
-                      minHeight: 48,
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.5,
-                    }}
-                  >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 3 : "auto",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <item.icon
-                        fontSize="small"
-                        className="icon text-gray-500"
-                      />
-                    </ListItemIcon>
-                    <ListItemText
-                      className="menuText text-gray-500"
-                      primary={item.name}
-                      sx={{ opacity: open ? 1 : 0 }}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              ))
-            : null}
+            
 
           {products.map((item, index) => (
             <ListItem
