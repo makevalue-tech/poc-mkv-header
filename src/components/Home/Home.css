@@ -1,0 +1,6 @@
+.app {
+  @apply flex flex-col items-center text-center justify-center text-gray-600 w-32 h-32 rounded-lg
+}
+.appContainer {
+  width: 536px;
+}

@@ -3,9 +3,7 @@ import TreeGrid from "../TreeGrid/TreeGrid"
 
 function App() {
   return (
-    <>
-     <MuiSidebar children={<TreeGrid/>}/>
-    </>
+     <MuiSidebar children={<TreeGrid/>}/>    
   )
 }
 

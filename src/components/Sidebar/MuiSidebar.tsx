@@ -559,7 +559,7 @@ export default function MuiSidebar({
         </List>
       </Drawer>
       <Box
-        className="h-screen max-w-full bg-zinc-100"
+        className="h-screen max-w-full bg-white"
         component="main"
         sx={{ flexGrow: 1, p: 3 }}
       >

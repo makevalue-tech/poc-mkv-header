@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <AppBar position="fixed">
+    <div className="border border-b-gray-200 shadow-md" >
       <Toolbar className="bg-white">
         <Link to="/poc-mkv-header/">
           <img
@@ -31,6 +31,6 @@ export default function Header() {
           </div>
         </div>
       </Toolbar>
-    </AppBar>
+    </div>
   );
 }
