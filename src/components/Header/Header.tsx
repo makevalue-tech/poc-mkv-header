@@ -3,6 +3,7 @@ import { Search, Settings } from "@mui/icons-material";
 import { AppBar, Toolbar } from "@mui/material";
 import MakeLogo from "../../../public/logo-100px.png";
 import { Link } from "react-router-dom";
+import logo from "../../../public/pague-menos-logo-0.png";0
 
 export default function Header() {
   return (
@@ -25,6 +26,7 @@ export default function Header() {
             />
             <Search fontSize="small" className="text-gray-400 absolute ml-24" />
           </div>
+          
           <div className="flex justify-around w-20">
             <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
             <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />

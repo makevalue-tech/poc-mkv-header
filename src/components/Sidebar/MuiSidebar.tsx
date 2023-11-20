@@ -129,7 +129,7 @@ export default function MuiSidebar({
   children: React.ReactNode;
 }) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const productsList = [
     {
@@ -166,7 +166,7 @@ export default function MuiSidebar({
       icon: Settings,
     },
   ];
-  const products = [
+  const products1 = [
     {
       name: "Investimento",
       description: "Make a complete analysis of your customers billing",
@@ -197,6 +197,10 @@ export default function MuiSidebar({
       href: "#",
       icon: House,
     },
+    
+  ];
+
+  const products2 = [
     {
       name: "Seguros e Obrigações",
       description: "Automate your processes",
@@ -233,6 +237,9 @@ export default function MuiSidebar({
       href: "#",
       icon: PriceCheck,
     },
+  ]
+
+  const products3 = [
     {
       name: "Contábil",
       description: "Automate your processes",
@@ -257,7 +264,7 @@ export default function MuiSidebar({
       href: "#",
       icon: Warning,
     },
-  ];
+  ]
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -338,9 +345,7 @@ export default function MuiSidebar({
         </DrawerHeader>
         <Divider />
         <List>
-            
-
-          {products.map((item, index) => (
+          {products1.map((item, index) => (
             <ListItem
               key={index}
               className="hover:text-sky-500"
@@ -373,6 +378,76 @@ export default function MuiSidebar({
             </ListItem>
           ))}
         </List>
+        <Divider />
+        <List>
+          {products2.map((item, index) => (
+            <ListItem
+              key={index}
+              className="hover:text-sky-500"
+              disablePadding
+              sx={{ display: "block" }}
+            >
+              <ListItemButton
+                className="sideButton"
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <item.icon className="icon" />
+                </ListItemIcon>
+                <ListItemText
+                  className="menuText"
+                  primary={item.name}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        <List>   
+            {products3.map((item, index) => (
+              <ListItem
+                key={index}
+                className="hover:text-sky-500"
+                disablePadding
+                sx={{ display: "block" }}
+              >
+                <ListItemButton
+                  className="sideButton"
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <item.icon className="icon" />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="menuText"
+                    primary={item.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
         <Divider />
         <List>
           {configs.map((config) => (

@@ -1,9 +1,64 @@
 .app {
-  @apply flex flex-col items-center text-center justify-center text-gray-600 w-32 h-32 rounded-lg
+  @apply flex flex-col items-center text-center flex-shrink-0 flex-wrap justify-center text-black hover:text-white w-64 h-32 rounded-lg;
 }
-.appContainer {
-  width: 536px;
+.app svg {
+  width: 35px;
+  height: 35px;
 }
 span {
-  margin-top: 5px;
+  margin-top: 10px;
+  font-size: 1.15rem;
+}
+.secondRow {
+  margin-left: 57px;
+}
+.thirdRow {
+  margin-left: 321px;
+}
+.fourthRow {
+  margin-left: 398px;
+}
+
+@media (max-width: 768px) {
+  .box :nth-child(1) {
+    order: 1;
+  }
+  .box :nth-child(2) {
+    order: 2;
+  }
+  .box :nth-child(3) {
+    order: 0;
+  }
+  .appBox {
+    padding: 15px;
+  }
+  .app {
+    width: 100%;
+  }
+  .box {
+    flex-direction: column;
+  }
+  .box h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .secondRow {
+    margin-left: 0 !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .thirdRow {
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 0 !important;
+    align-items: center;
+  }
+  .fourthRow {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 0 !important;
+  }
 }
