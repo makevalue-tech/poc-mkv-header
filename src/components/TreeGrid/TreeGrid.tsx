@@ -8,6 +8,7 @@ import {
 import {
   GridCellParams,
   GridGroupNode,
+  gridClasses,
 } from "@mui/x-data-grid-pro";
 import React, { useState } from "react";
 
@@ -163,9 +164,35 @@ export default function AggregationGetAggregationPosition() {
     <div style={{ height: 370, width: "100%" }}>
       <Box
         sx={{
+          [`& .${gridClasses.row}.even`]: {
+            backgroundColor:"#d4e0f0"
+          },
+          [`& .${gridClasses.row}.odd`]: {
+            backgroundColor:"#dfecf5"
+          },
+          [`& .${gridClasses.row}.isLastVisible`]: {
+            backgroundColor:"#fffdc0"
+          },
+          
+          "& .MuiDataGrid-aggregationColumnHeaderLabel": {
+            color: "#000",
+        
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: "#e5e5e5",
+            color: "#000"
+          },
+          "& .MuiDataGrid-row": {
+            backgroundColor: "white",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: "#e5e5e5"
+          },
+          
           "& .MuiDataGrid-footerCell": {
-            backgroundColor: "#b9d5ff91",
-            color: "#1a3e72",
+            backgroundColor: "#fffdc0",
+            fontWeight:'bold',
+            color: "#000",
           },
         }}
       >
@@ -179,11 +206,17 @@ export default function AggregationGetAggregationPosition() {
           <DataGridPremium
             {...data}
             apiRef={apiRef}
+            density="compact"
             
             columns={COLUMNS}
             defaultGroupingExpansionDepth={expanded}
             disableRowSelectionOnClick
             initialState={initialState}
+            getRowClassName={(params) =>
+              params.indexRelativeToCurrentPage % 2 === 0 && params.id != 'auto-generated-group-footer-root' ? 'even' : 'odd' &&
+              params.id === 'auto-generated-group-footer-root'  ? 'isLastVisible' : ''
+            }
+            
             rowGroupingColumnMode="multiple"
             getCellClassName={(params: GridCellParams<any, any, number>) => {
               if (params.field != "value" || params.value == null) {
