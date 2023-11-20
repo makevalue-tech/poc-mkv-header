@@ -138,6 +138,83 @@ export default function AggregationGetAggregationPosition() {
         account: "0001540-8",
         gross: 1900,
       },
+      {
+        id: 12,
+        company: "0002",
+        agency: "5924",
+        account: "0003428-8",
+        gross: 183,
+      },
+      {
+        id: 13,
+        company: "0002",
+        agency: "5924",
+        account: "0003428-8",
+        gross: 95,
+      },
+      {
+        id: 14,
+        company: "0002",
+        agency: "5924",
+        account: "0003428-8",
+        gross: 19700,
+      },
+      {
+        id: 15,
+        company: "0002",
+        agency: "5924",
+        account: "0003428-8",
+        gross: 23500,
+      },
+      {
+        id: 16,
+        company: "0002",
+        agency: "5721",
+        account: "00003632-5",
+        gross: 14300,
+      },
+      {
+        id: 17,
+        company: "0002",
+        agency: "5721",
+        account: "00003632-5",
+        gross: 12000,
+      },
+      {
+        id: 18,
+        company: "0002",
+        agency: "5721",
+        account: "00003632-5",
+        gross: 1560,
+      },
+      {
+        id: 19,
+        company: "0002",
+        agency: "5721",
+        account: "00002334-5",
+        gross: 1320,
+      },
+      {
+        id: 20,
+        company: "0002",
+        agency: "5721",
+        account: "00002334-5",
+        gross: 125,
+      },
+      {
+        id: 21,
+        company: "0002",
+        agency: "5934",
+        account: "0002530-8",
+        gross: 277,
+      },
+      {
+        id: 22,
+        company: "0002",
+        agency: "5934",
+        account: "0002530-8",
+        gross: 1900,
+      },
     ],
   };
 
@@ -161,7 +238,7 @@ export default function AggregationGetAggregationPosition() {
 
 
   return (
-    <div style={{ height: 370, width: "100%" }}>
+    <div style={{  width: "100%"}}>
       <Box
         sx={{
           [`& .${gridClasses.row}.even`]: {
@@ -206,8 +283,9 @@ export default function AggregationGetAggregationPosition() {
           <DataGridPremium
             {...data}
             apiRef={apiRef}
+            sx={{marginBottom: '30px'}}
             density="compact"
-            
+            hideFooter
             columns={COLUMNS}
             defaultGroupingExpansionDepth={expanded}
             disableRowSelectionOnClick

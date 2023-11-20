@@ -7,6 +7,7 @@ import {
   Leaderboard,
   Pix,
   RequestQuote,
+  Wallet,
 } from "@mui/icons-material";
 import Header from "../Header/Header";
 import "./Home.css";
@@ -83,7 +84,7 @@ export default function Home() {
               to={"#"}
               className="app operations  bg-emerald-400 hover:bg-emerald-500 cursor-not-allowed"
             >
-              <AccountBalance />
+              <Wallet />
               <span>Recursos Bancários</span>
             </NavLink>
           </div>
