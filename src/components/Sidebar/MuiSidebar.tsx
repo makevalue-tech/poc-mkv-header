@@ -281,28 +281,24 @@ export default function MuiSidebar({
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed">
         <Toolbar className="bg-white">
-          {!open && (
-            <Link to="/poc-mkv-header/">
+            <Link className="flex" to="/poc-mkv-header/">
               <img
                 src={MakeLogo}
                 alt="logo makevalue"
                 className="mr-5"
                 width={30}
               />
+              <h1 className="text-gray-500 font-bold mr-10">MakeValue</h1>
             </Link>
-          )}
+            
 
           <IconButton
             color="default"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={() => setOpen(!open)}
             edge="start"
-            sx={{
-              marginRight: 0,
-              ...(open && { display: "none" }),
-            }}
           >
             <Menu className="bg-sky-100 rounded-md"/>
           </IconButton>
@@ -335,29 +331,13 @@ export default function MuiSidebar({
                 <img src={ProfilePicture} alt="" className="w-full"/>
               </div>
             
-              
-              
             </div>
           </div>
         </Toolbar>
       </AppBar>
       
-      <Drawer sx={{height:"100vh"}} variant="permanent"  open={open}>
+      <Drawer sx={{}} variant="permanent"  open={open}>
         <DrawerHeader sx={{ justifyContent: "space-around" }}>
-          <div className="flex">
-            {open && (
-              <Link to={"/poc-mkv-header/"}>
-                <img
-                  src={MakeLogo}
-                  alt="logo makevalue"
-                  className="mr-5"
-                  width={30}
-                />
-              </Link>
-            )}
-            <h1 className="text-gray-500 font-bold">MakeValue</h1>
-          </div>
-
           <IconButton onClick={handleDrawerClose}>  
             <Menu className="bg-sky-100 rounded-md" />
           </IconButton>

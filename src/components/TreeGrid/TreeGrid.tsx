@@ -26,6 +26,7 @@ const COLUMNS: GridColDef[] = [
     field: "agency",
     headerName: "Agency",
     width: 200,
+    editable: true
   },
   {
     field: "account",
