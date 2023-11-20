@@ -146,7 +146,7 @@ export default function AggregationGetAggregationPosition() {
     apiRef,
     initialState: {
       rowGrouping: {
-        model: ["company", "agency", "account"],
+        model: [],
       },
       aggregation: {
         model: {
