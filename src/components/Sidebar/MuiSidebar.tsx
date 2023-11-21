@@ -17,8 +17,6 @@ import ProfilePicture from "../../../public/8847137.png";
 import {
   Menu,
   Analytics,
-  PrivacyTip,
-  Gavel,
   Settings,
   Search,
   BarChart,
@@ -35,9 +33,15 @@ import {
   AccountTree,
   Addchart,
   Warning,
+  Business,
+  AccountBalance,
+  AccountBalanceWallet,
 } from "@mui/icons-material";
-import { BellAlertIcon, PhoneArrowDownLeftIcon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
+import {
+  BellAlertIcon,
+  PhoneArrowDownLeftIcon,
+} from "@heroicons/react/20/solid";
+import { Link, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -110,31 +114,27 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function MuiSidebar({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function MuiSidebar() {
   const [open, setOpen] = React.useState(true);
-
-  const configs = [
+  const navigate = useNavigate();
+  const register = [
     {
-      name: "Privacy policy",
-      description: "See our privacy policy",
-      href: "/policy",
-      icon: PrivacyTip,
+      name: "Centro de Custo",
+      description: "Cadastrar centro de custo",
+      href: "/poc-mkv-header/costcenter",
+      icon: Business,
     },
     {
-      name: "Terms of service",
-      description: "See our terms of service",
-      href: "/terms",
-      icon: Gavel,
+      name: "Plano de Contas",
+      description: "Cadastrar plano de contas",
+      href: "/accountplaning",
+      icon: AccountBalance,
     },
     {
-      name: "Settings",
-      description: "Open settings",
-      href: "/settings",
-      icon: Settings,
+      name: "Conta Contábil",
+      description: "Cadastrar Conta contábil",
+      href: "/billaccount",
+      icon: AccountBalanceWallet,
     },
   ];
   const products1 = [
@@ -168,7 +168,6 @@ export default function MuiSidebar({
       href: "#",
       icon: House,
     },
-    
   ];
 
   const products2 = [
@@ -208,7 +207,7 @@ export default function MuiSidebar({
       href: "#",
       icon: PriceCheck,
     },
-  ]
+  ];
 
   const products3 = [
     {
@@ -235,29 +234,22 @@ export default function MuiSidebar({
       href: "#",
       icon: Warning,
     },
-  ]
-
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
+  ];
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed">
         <Toolbar className="bg-white">
-            <Link className="flex" to="/poc-mkv-header/">
-              <img
-                src={MakeLogo}
-                alt="logo makevalue"
-                className="mr-5"
-                width={30}
-              />
-              <h1 className="text-gray-500 font-bold mr-10">MakeValue</h1>
-            </Link>
-            
+          <Link className="flex" to="/poc-mkv-header/">
+            <img
+              src={MakeLogo}
+              alt="logo makevalue"
+              className="mr-5"
+              width={30}
+            />
+            <h1 className="text-gray-500 font-bold mr-10">MakeValue</h1>
+          </Link>
 
           <IconButton
             color="default"
@@ -265,7 +257,7 @@ export default function MuiSidebar({
             onClick={() => setOpen(!open)}
             edge="start"
           >
-            <Menu className="bg-sky-100 rounded-md"/>
+            <Menu className="bg-sky-100 rounded-md" />
           </IconButton>
           <div className="w-full flex justify-between">
             <div className="ml-2 flex justify-start items-center">
@@ -274,36 +266,31 @@ export default function MuiSidebar({
                 placeholder="Search..."
               />
               <div className="flex items-center justify-center border border-l-0 h-full border-sky-200 rounded-r-lg pr-1">
-              <Search
-                fontSize="small"
-                className="text-sky-300 ml-1 "
-              />
+                <Search fontSize="small" className="text-sky-300 ml-1 " />
               </div>
-              
             </div>
             <div className="flex items-center justify-around w-72">
               <div className="p-1 bg-sky-200 rounded-md">
                 <PhoneArrowDownLeftIcon className=" text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
               </div>
               <div className="p-1  bg-sky-200 rounded-md">
-              <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
+                <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
               </div>
               <div className="p-1 bg-sky-200 rounded-md">
-              <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
+                <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
               </div>
 
               <div className="rounded-full w-10 h-10 flex justify-center items-center">
-                <img src={ProfilePicture} alt="" className="w-full"/>
+                <img src={ProfilePicture} alt="" className="w-full" />
               </div>
-            
             </div>
           </div>
         </Toolbar>
       </AppBar>
-      
-      <Drawer sx={{}} variant="permanent"  open={open}>
+
+      <Drawer sx={{}} variant="permanent" open={open}>
         <DrawerHeader sx={{ justifyContent: "space-around" }}>
-          <IconButton onClick={handleDrawerClose}>  
+          <IconButton onClick={() => setOpen(!open)}>
             <Menu className="bg-sky-100 rounded-md" />
           </IconButton>
         </DrawerHeader>
@@ -311,6 +298,7 @@ export default function MuiSidebar({
         <List>
           {products1.map((item, index) => (
             <ListItem
+              onClick={() => {navigate(item.href)}}
               key={index}
               className="hover:text-sky-500"
               disablePadding
@@ -346,6 +334,7 @@ export default function MuiSidebar({
         <List>
           {products2.map((item, index) => (
             <ListItem
+            onClick={() => {navigate(item.href)}}
               key={index}
               className="hover:text-sky-500"
               disablePadding
@@ -378,45 +367,10 @@ export default function MuiSidebar({
           ))}
         </List>
         <Divider />
-        <List>   
-            {products3.map((item, index) => (
-              <ListItem
-                key={index}
-                className="hover:text-sky-500"
-                disablePadding
-                sx={{ display: "block" }}
-              >
-                <ListItemButton
-                  className="sideButton"
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <item.icon className="icon" />
-                  </ListItemIcon>
-                  <ListItemText
-                    className="menuText"
-                    primary={item.name}
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        <Divider />
         <List>
-          {configs.map((config) => (
+          {products3.map((item, index) => (
             <ListItem
-              key={config.name}
+              key={index}
               className="hover:text-sky-500"
               disablePadding
               sx={{ display: "block" }}
@@ -436,11 +390,52 @@ export default function MuiSidebar({
                     justifyContent: "center",
                   }}
                 >
-                  <config.icon className="icon" />
+                  <item.icon className="icon" />
                 </ListItemIcon>
                 <ListItemText
                   className="menuText"
-                  primary={config.name}
+                  primary={item.name}
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+        <Divider />
+        {open ? (
+          <h3 className="text-start ml-6 text-xl text-gray-500 font-semibold mt-4">
+            Cadastros
+          </h3>
+        ) : null}
+        <List>
+          {register.map((item) => (
+            <ListItem
+              onClick={() => {navigate(item.href)}}
+              key={item.name}
+              className="hover:text-sky-500"
+              disablePadding
+              sx={{ display: "block" }}
+            >
+              <ListItemButton
+                className="sideButton"
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  <item.icon className="icon" />
+                </ListItemIcon>
+                <ListItemText
+                  className="menuText"
+                  primary={item.name}
                   sx={{ opacity: open ? 1 : 0 }}
                 />
               </ListItemButton>
@@ -448,15 +443,8 @@ export default function MuiSidebar({
           ))}
         </List>
       </Drawer>
+
       
-      <Box
-        className="max-w-full bg-white"
-        component="main"
-        sx={{ flexGrow: 1, p: 3 }}
-      >
-        <DrawerHeader />
-        {children}
-      </Box>
     </Box>
   );
 }

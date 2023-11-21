@@ -16,12 +16,9 @@ export default function Table() {
   }, []);
   return (
     <div >
-      <Box sx={{ height: 585, width:'95%' }}>
+      <Box sx={{ height: 485, width:'100%', pl:30 }}>
       <DataGridPro
         {...data}
-        slots={{
-          toolbar: GridToolbar,
-        }}
         onCellClick={(e) => setContent(String(e.value))}
         onCellEditStart={(e) => setContent(String(e.value))}
         onCellDoubleClick={eventListener}
