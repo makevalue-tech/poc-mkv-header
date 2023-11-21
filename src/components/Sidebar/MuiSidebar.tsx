@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
+import { styled, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
@@ -15,25 +15,12 @@ import ListItemText from "@mui/material/ListItemText";
 import MakeLogo from "../../../public/logo-100px.png";
 import ProfilePicture from "../../../public/8847137.png";
 import {
-  AccountBalance,
-  ChevronLeft,
-  ChevronRight,
   Menu,
   Analytics,
-  Inventory,
-  AutoAwesome,
-  AutoMode,
   PrivacyTip,
   Gavel,
   Settings,
   Search,
-  Category,
-  Campaign,
-  CandlestickChart,
-  CrisisAlert,
-  Adb,
-  AddToHomeScreen,
-  AddLocation,
   BarChart,
   PieChart,
   LocalAtm,
@@ -49,8 +36,7 @@ import {
   Addchart,
   Warning,
 } from "@mui/icons-material";
-import { useState } from "react";
-import { BellAlertIcon, ChevronDownIcon, PhoneArrowDownLeftIcon } from "@heroicons/react/20/solid";
+import { BellAlertIcon, PhoneArrowDownLeftIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -129,23 +115,7 @@ export default function MuiSidebar({
 }: {
   children: React.ReactNode;
 }) {
-  const theme = useTheme();
   const [open, setOpen] = React.useState(true);
-
-  const productsList = [
-    {
-      name: "Relatório 2",
-      description: "See report2",
-      href: "/product2",
-      icon: CandlestickChart,
-    },
-    {
-      name: "Relatório 3",
-      description: "See report3",
-      href: "/product3",
-      icon: CrisisAlert,
-    },
-  ];
 
   const configs = [
     {
@@ -267,16 +237,11 @@ export default function MuiSidebar({
     },
   ]
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
 
-  const [productsClicked, setProductsClicked] = useState(false);
-  const [subProductsClicked, setSubProductsClicked] = useState(false);
 
   return (
     <Box sx={{ display: "flex" }}>
