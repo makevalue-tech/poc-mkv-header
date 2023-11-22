@@ -6,8 +6,12 @@ const CostCenter = () => {
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <MuiSidebar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
+      <Box className="bg-slate-100 h-screen" component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
+        <h2 className="text-gray-600 text-3xl font-semibold my-4">Centro de Custo</h2>
+        
         <Table />
+        
+       
       </Box>
     </Box>
   );
