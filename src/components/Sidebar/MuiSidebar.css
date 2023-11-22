@@ -1,0 +1,10 @@
+.sideButton:hover .icon  {
+  @apply text-sky-400
+}
+.active .icon {
+  @apply text-sky-400
+}
+.active .sideButton {
+    @apply text-sky-400
+  } 
+  

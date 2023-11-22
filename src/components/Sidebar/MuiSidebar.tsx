@@ -12,6 +12,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import './MuiSidebar.css'
 import MakeLogo from "../../../public/logo-100px.png";
 import ProfilePicture from "../../../public/8847137.png";
 import {
@@ -41,7 +42,7 @@ import {
   BellAlertIcon,
   PhoneArrowDownLeftIcon,
 } from "@heroicons/react/20/solid";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -141,31 +142,31 @@ export default function MuiSidebar() {
     {
       name: "Investimento",
       description: "Make a complete analysis of your customers billing",
-      href: "#",
+      href: "/poc-mkv-header/",
       icon: BarChart,
     },
     {
       name: "Empréstimo",
       description: "See your dashboard",
-      href: "#",
+      href: "/loan",
       icon: PieChart,
     },
     {
       name: "Derivativo",
       description: "See all your active products",
-      href: "#",
+      href: "/derivative",
       icon: LocalAtm,
     },
     {
       name: "Mutuo",
       description: "Connect with third-party applications",
-      href: "#",
+      href: "/mutual",
       icon: CenterFocusStrong,
     },
     {
       name: "Garantia",
       description: "Automate your processes",
-      href: "#",
+      href: "/garantee",
       icon: House,
     },
   ];
@@ -174,37 +175,37 @@ export default function MuiSidebar() {
     {
       name: "Seguros",
       description: "Automate your processes",
-      href: "#",
+      href: "/insurance",
       icon: Savings,
     },
     {
       name: "Arrendamento",
       description: "Automate your processes",
-      href: "#",
+      href: "/rentals",
       icon: CarRental,
     },
     {
       name: "Consórcio",
       description: "Automate your processes",
-      href: "#",
+      href: "/consortium",
       icon: LocalShipping,
     },
     {
       name: "AVP",
       description: "Automate your processes",
-      href: "#",
+      href: "/avp",
       icon: ListAlt,
     },
     {
       name: "CBios",
       description: "Automate your processes",
-      href: "#",
+      href: "/cbios",
       icon: LocationCity,
     },
     {
       name: "Dividendos",
       description: "Automate your processes",
-      href: "#",
+      href: "/dividends",
       icon: PriceCheck,
     },
   ];
@@ -213,25 +214,25 @@ export default function MuiSidebar() {
     {
       name: "Contábil",
       description: "Automate your processes",
-      href: "#",
+      href: "/accountance",
       icon: AccountTree,
     },
     {
       name: "Relatório",
       description: "Automate your processes",
-      href: "#",
+      href: "/report",
       icon: Analytics,
     },
     {
       name: "Dashboard",
       description: "Automate your processes",
-      href: "#",
+      href: "/dashboard",
       icon: Addchart,
     },
     {
       name: "Controle de Risco",
       description: "Automate your processes",
-      href: "#",
+      href: "/riskcontrol",
       icon: Warning,
     },
   ];
@@ -296,10 +297,9 @@ export default function MuiSidebar() {
         </DrawerHeader>
         <Divider />
         <List>
-          {products1.map((item, index) => (
-            <ListItem
-              onClick={() => {navigate(item.href)}}
-              key={index}
+          {products1.map((item) => (
+            <NavLink key={item.name} to={item.href}>
+              <ListItem
               className="hover:text-sky-500"
               disablePadding
               sx={{ display: "block" }}
@@ -328,14 +328,16 @@ export default function MuiSidebar() {
                 />
               </ListItemButton>
             </ListItem>
+            </NavLink>
+            
           ))}
         </List>
         <Divider />
         <List>
-          {products2.map((item, index) => (
-            <ListItem
-            onClick={() => {navigate(item.href)}}
-              key={index}
+          {products2.map((item) => (
+            <NavLink key={item.name} to={item.href}>
+              <ListItem
+              
               className="hover:text-sky-500"
               disablePadding
               sx={{ display: "block" }}
@@ -364,13 +366,15 @@ export default function MuiSidebar() {
                 />
               </ListItemButton>
             </ListItem>
+            </NavLink>
+            
           ))}
         </List>
         <Divider />
         <List>
-          {products3.map((item, index) => (
-            <ListItem
-              key={index}
+          {products3.map((item) => (
+            <NavLink key={item.name} to={item.href}>
+              <ListItem
               className="hover:text-sky-500"
               disablePadding
               sx={{ display: "block" }}
@@ -399,6 +403,8 @@ export default function MuiSidebar() {
                 />
               </ListItemButton>
             </ListItem>
+            </NavLink>
+            
           ))}
         </List>
         <Divider />
@@ -409,9 +415,9 @@ export default function MuiSidebar() {
         ) : null}
         <List>
           {register.map((item) => (
-            <ListItem
+            <NavLink key={item.name} to={item.href}>
+              <ListItem
               onClick={() => {navigate(item.href)}}
-              key={item.name}
               className="hover:text-sky-500"
               disablePadding
               sx={{ display: "block" }}
@@ -440,6 +446,8 @@ export default function MuiSidebar() {
                 />
               </ListItemButton>
             </ListItem>
+            </NavLink>
+            
           ))}
         </List>
       </Drawer>

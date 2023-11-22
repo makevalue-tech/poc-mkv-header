@@ -4,10 +4,10 @@ import Table from "../Table/Table";
 
 const CostCenter = () => {
   return (
-    <Box sx={{display:"flex max-w-full"}}>
+    <Box sx={{ display: "flex", width: "100%" }}>
       <MuiSidebar />
-      <Box component="main" sx={{flexGrow:1, p:3, pt:20}}>
-          <Table />
+      <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
+        <Table />
       </Box>
     </Box>
   );
