@@ -50,11 +50,12 @@ export default function CostCenterModal() {
       <div className="flex flex-col p-6 justify-center items-center">
         <TextField
           size="small"
-          variant="filled"
+          variant="standard"
           required
           id="outlined-required"
           label="Descrição"
           defaultValue=""
+          helperText="Código externo obrigatório!"
         />
         <TextField
         size="small"
@@ -66,11 +67,12 @@ export default function CostCenterModal() {
         />
         <TextField
           size="small"
-          variant="filled"
+          variant="outlined"
           required
           id="outlined-required"
           label="Código Externo"
           defaultValue=""
+          
         />
         
         
