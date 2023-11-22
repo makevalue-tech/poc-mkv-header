@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import { DataGridPro, GridColDef } from "@mui/x-data-grid-pro";
+import { DataGridPro, GridColDef, gridClasses } from "@mui/x-data-grid-pro";
 import { useState } from "react";
 import CostCenterModal from "../CostCenterModal/CostCenterModal";
 
@@ -97,6 +97,12 @@ export default function Table() {
         sx={{
           height: 485,
           width: "100%",
+          [`& .${gridClasses.row}.even`]: {
+            backgroundColor:"#d4e0f0"
+          },
+          [`& .${gridClasses.row}.odd`]: {
+            backgroundColor:"#dfecf5"
+          },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "#f1f5f9",
             borderRadius: 0,
@@ -151,12 +157,12 @@ export default function Table() {
                   >
                     Editar
                   </Button>
-                  <Button variant="contained" color="primary">
+                  <button title="Visualizar" className="text-gray-500 hover:text-sky-500">
                     <Visibility />
-                  </Button>
+                  </button>
                 </>
               )}
-              <div className="pl-1 pr-4 flex gap-3 ">
+              <div className="pr-4 flex gap-3 ">
                 {checked && (
                   <button
                     className="text-gray-500 hover:text-red-500 "
@@ -191,6 +197,9 @@ export default function Table() {
             rowHeight={38}
             hideFooter
             checkboxSelection
+            getRowClassName={(params) =>
+              params.indexRelativeToCurrentPage % 2 === 0 && params.id != 'auto-generated-group-footer-root' ? 'even' : 'odd' 
+            }
             onRowSelectionModelChange={(item) => {
               if (item.length > 0 && item.length < 2) {
                 setChecked(true);
