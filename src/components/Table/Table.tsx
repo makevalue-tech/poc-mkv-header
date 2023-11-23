@@ -1,18 +1,19 @@
 import {
   Delete,
-  Download,
   Edit,
   Search,
   Upload,
   Visibility,
 } from "@mui/icons-material";
-import { Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from "@mui/material";
+import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import { DataGridPro, GridColDef, gridClasses } from "@mui/x-data-grid-pro";
-import { useState } from "react";
-import CostCenterModal from "../CostCenterModal/CostCenterModal";
-
+import { DataGridPro, GridColDef, GridRowId, gridClasses } from "@mui/x-data-grid-pro";
+import { useContext, useState } from "react";
+import SplitButton from "../SplitButton/SplitButton";
+import { CostCenterContext } from "../../context/CostCenterProvider/CostCenterContext";
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi"
 export default function Table() {
+  const {data} = useContext(CostCenterContext)
   const COLUMNS: GridColDef[] = [
     {
       field: "descricao",
@@ -20,8 +21,8 @@ export default function Table() {
       width: 200,
     },
     {
-      field: "codigo",
-      headerName: "Código",
+      field: "centroDeCusto",
+      headerName: "Centro de Custo",
       width: 200,
     },
     {
@@ -30,66 +31,34 @@ export default function Table() {
       width: 200,
     },
   ];
-  const data = {
-    rows: [
-      {
-        id: 1,
-        descricao: "makevalue",
-        codigo: 123,
-        codigoExterno: 1234,
-      },
-      {
-        id: 2,
-        descricao: "makevalue",
-        codigo: 3412,
-        codigoExterno: 543,
-      },
-      {
-        id: 3,
-        descricao: "makevalue",
-        codigo: 4123,
-        codigoExterno: 431,
-      },
-      {
-        id: 4,
-        descricao: "makevalue",
-        codigo: 4123,
-        codigoExterno: 431,
-      },
-      {
-        id: 5,
-        descricao: "makevalue",
-        codigo: 4123,
-        codigoExterno: 431,
-      },
-      {
-        id: 6,
-        descricao: "makevalue",
-        codigo: 4123,
-        codigoExterno: 431,
-      },
-      {
-        id: 7,
-        descricao: "makevalue",
-        codigo: 4123,
-        codigoExterno: 431,
-      },
-    ],
-  };
+
+  // setData((data) => ({
+  //   ...data,
+  //   rows: [
+  //     ...data.rows, 
+  //     {
+  //     id: 8,
+  //     descricao: "makevalue",
+  //     centroDeCusto: 41623,
+  //     codigoExterno: 4351,
+  //     }
+  //   ]
+  // }))
+
+  
+  
+
+
+      
   // const [, setContent] = useState<string | null>(null);
 
   const [checked, setChecked] = useState(false);
   const [isEditable, setEditable] = useState(false);
 
-    const [sort, setSort] = useState('');
-  
-    const handleChange = (event: SelectChangeEvent) => {
-      setSort(event.target.value as string);
-    };
+  const {deleteRow} = useContext(CostCenterContext)
 
-  // const eventListener = useCallback((event: any) => {
-  //   console.log("evento:", event);
-  // }, []);
+    const [checkedRows, setCheckedRows] = useState<GridRowId[]>([]);
+  
 
   return (
     <div>
@@ -98,10 +67,10 @@ export default function Table() {
           height: 485,
           width: "100%",
           [`& .${gridClasses.row}.even`]: {
-            backgroundColor:"#d4e0f0"
+            backgroundColor:"#fff"
           },
           [`& .${gridClasses.row}.odd`]: {
-            backgroundColor:"#dfecf5"
+            backgroundColor:"#F2FBFF"
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: "#f1f5f9",
@@ -129,24 +98,8 @@ export default function Table() {
               }}
             />
             <Stack direction="row" className=" flex items-center justify-end w-full" spacing={2}>
-              <FormControl size="small" className="w-60 align-center" >
-                <InputLabel id="select">Sort by (User Info)</InputLabel>
-                <Select
-                
-                  size="small"
-                  labelId="select"
-                  id="select"
-                  value={sort}
-                  label="Sort by (user info)"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
               {!checked && (
-                <CostCenterModal />
+                <SplitButton />
               )}
               {isEditable && (
                 <>
@@ -165,6 +118,7 @@ export default function Table() {
               <div className="pr-4 flex gap-3 ">
                 {checked && (
                   <button
+                    onClick={() => deleteRow(checkedRows.toString())}
                     className="text-gray-500 hover:text-red-500 "
                     title="Excluir"
                   >
@@ -176,7 +130,7 @@ export default function Table() {
                   className="text-gray-500 hover:text-sky-500"
                   title="Export Excel"
                 >
-                  {<Download fontSize="medium" />}
+                  {<PiMicrosoftExcelLogoFill size={22} />}
                 </button>
                 <button
                   className="text-gray-500 hover:text-sky-500"
@@ -188,22 +142,26 @@ export default function Table() {
             </Stack>
           </div>
           <DataGridPro
-            {...data}
+
+            rows={data}
             density="compact"
             sx={{ borderRadius: 0 }}
             className="bg-white"
             columns={COLUMNS}
-            loading={data.rows.length === 0}
+            loading={data.length === 0}
             rowHeight={38}
             hideFooter
+            onRowClick={(e) => console.log(e)}
             checkboxSelection
             getRowClassName={(params) =>
               params.indexRelativeToCurrentPage % 2 === 0 && params.id != 'auto-generated-group-footer-root' ? 'even' : 'odd' 
             }
             onRowSelectionModelChange={(item) => {
+              setCheckedRows(item)
               if (item.length > 0 && item.length < 2) {
                 setChecked(true);
                 setEditable(true);
+                console.log(item)
               } else if (item.length > 1) {
                 setEditable(false);
                 setChecked(true);

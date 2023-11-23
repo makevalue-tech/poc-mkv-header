@@ -243,10 +243,10 @@ export default function AggregationGetAggregationPosition() {
       <Box
         sx={{
           [`& .${gridClasses.row}.even`]: {
-            backgroundColor:"#d4e0f0"
+            backgroundColor:"#dfecf5"
           },
           [`& .${gridClasses.row}.odd`]: {
-            backgroundColor:"#dfecf5"
+            backgroundColor:"#fff"
           },
           [`& .${gridClasses.row}.isLastVisible`]: {
             backgroundColor:"#fffdc0"
@@ -260,9 +260,7 @@ export default function AggregationGetAggregationPosition() {
             backgroundColor: "#e5e5e5",
             color: "#000"
           },
-          "& .MuiDataGrid-row": {
-            backgroundColor: "white",
-          },
+          
           "& .MuiDataGrid-footerContainer": {
             backgroundColor: "#e5e5e5"
           },

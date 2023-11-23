@@ -1,0 +1,17 @@
+
+export interface ICostCenter {
+    id: string;
+    descricao: string;
+    centroDeCusto: string;
+    codigoExterno: string;
+}
+
+export interface IContext {
+    data: ICostCenter[];
+    addRow: (descricao: string, centroDeCusto: string, codigoExterno: string) => Promise<void>;
+    deleteRow: (id: string) => void;  
+}
+
+export interface ICostCenterProvider {
+    children: React.ReactNode;
+}

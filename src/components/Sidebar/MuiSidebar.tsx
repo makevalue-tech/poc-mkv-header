@@ -142,7 +142,7 @@ export default function MuiSidebar() {
     {
       name: "Investimento",
       description: "Make a complete analysis of your customers billing",
-      href: "/poc-mkv-header/",
+      href: "/poc-mkv-header/operations",
       icon: BarChart,
     },
     {

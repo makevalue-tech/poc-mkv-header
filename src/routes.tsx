@@ -9,11 +9,11 @@ export const router = createBrowserRouter([
     element: <Operations />,
   },
   {
-    path: '/poc-mkv-header/home',
+    path: '/poc-mkv-header/',
     element: <Home />,
   },
   {
-    path: '/poc-mkv-header/',
+    path: '/poc-mkv-header/costcenter',
     element: <CostCenter />,
   },
 ])
