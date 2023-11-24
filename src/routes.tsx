@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
-import Operations from "./components/Operations/Operations";
-import Home from "./components/Home/Home";
-import CostCenter from "./components/CostCenter/CostCenter";
+import Operations from "./pages/Operations/Operations";
+import Home from "./pages/Home/Home";
+import CostCenter from "./pages/CostCenter/CostCenter";
 
 export const router = createBrowserRouter([
   {

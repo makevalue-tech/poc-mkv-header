@@ -24,11 +24,11 @@
 }
 .secondRow {
   @apply flex gap-2;
-  margin-left: 57px;
+  margin-left: 47px;
 }
 .thirdRow {
   @apply flex gap-2 ml-60;
-  margin-left: 321px;
+  margin-left: 313px;
 }
 .fourthRow {
   @apply flex gap-2 justify-center;

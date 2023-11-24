@@ -1,19 +1,29 @@
-import {
-  Delete,
-  Edit,
-  Search,
-  Upload,
-  Visibility,
-} from "@mui/icons-material";
-import { Button, InputAdornment, Stack, TextField } from "@mui/material";
+import { Delete, Search, Upload, Visibility } from "@mui/icons-material";
+import { InputAdornment, Stack, TextField } from "@mui/material";
 import Box from "@mui/material/Box";
-import { DataGridPro, GridColDef, GridRowId, gridClasses } from "@mui/x-data-grid-pro";
+import {
+  DataGridPro,
+  GridColDef,
+  GridRowId,
+  GridRowSelectionModel,
+} from "@mui/x-data-grid-pro";
 import { useContext, useState } from "react";
 import SplitButton from "../SplitButton/SplitButton";
 import { CostCenterContext } from "../../context/CostCenterProvider/CostCenterContext";
-import { PiMicrosoftExcelLogoFill } from "react-icons/pi"
-export default function Table() {
-  const {data} = useContext(CostCenterContext)
+import { PiMicrosoftExcelLogoFill } from "react-icons/pi";
+import { gridStyle } from "../../styles/muiGridStyles";
+import EditCostCenterModal from "../Modals/CostCenterModals/EditCostCenterModal";
+import { ICostCenter } from "../../context/CostCenterProvider/types";
+import ViewCostCenterModal from "../Modals/CostCenterModals/ViewCostCenterModal";
+export default function CostCenterTable() {
+  const { data } = useContext(CostCenterContext);
+  const { deleteRow } = useContext(CostCenterContext);
+
+  const [checked, setChecked] = useState(false);
+  const [isEditable, setEditable] = useState(false);
+  const [checkedRows, setCheckedRows] = useState<GridRowId[]>([]);
+  const [row, setRow] = useState<ICostCenter | null>(null);
+
   const COLUMNS: GridColDef[] = [
     {
       field: "descricao",
@@ -32,55 +42,24 @@ export default function Table() {
     },
   ];
 
-  // setData((data) => ({
-  //   ...data,
-  //   rows: [
-  //     ...data.rows, 
-  //     {
-  //     id: 8,
-  //     descricao: "makevalue",
-  //     centroDeCusto: 41623,
-  //     codigoExterno: 4351,
-  //     }
-  //   ]
-  // }))
-
-  
-  
-
-
-      
-  // const [, setContent] = useState<string | null>(null);
-
-  const [checked, setChecked] = useState(false);
-  const [isEditable, setEditable] = useState(false);
-
-  const {deleteRow} = useContext(CostCenterContext)
-
-    const [checkedRows, setCheckedRows] = useState<GridRowId[]>([]);
-  
+  const handleSelection = (item: GridRowSelectionModel) => {
+    setCheckedRows(item);
+    if (item.length > 0 && item.length < 2) {
+      setChecked(true);
+      setEditable(true);
+      console.log(item);
+    } else if (item.length > 1) {
+      setEditable(false);
+      setChecked(true);
+    } else {
+      setChecked(false);
+      setEditable(false);
+    }
+  };
 
   return (
     <div>
-      <Box
-        sx={{
-          height: 485,
-          width: "100%",
-          [`& .${gridClasses.row}.even`]: {
-            backgroundColor:"#fff"
-          },
-          [`& .${gridClasses.row}.odd`]: {
-            backgroundColor:"#F2FBFF"
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#f1f5f9",
-            borderRadius: 0,
-          },
-          "& .MuiDataGrid": {
-            borderRadius: 0,
-          },
-        }}
-      >
+      <Box sx={gridStyle}>
         <div className="bg-white h-fit rounded-md border border-gray-200">
           <div className="flex justify-between items-center p-4">
             <TextField
@@ -97,22 +76,16 @@ export default function Table() {
                 ),
               }}
             />
-            <Stack direction="row" className=" flex items-center justify-end w-full" spacing={2}>
-              {!checked && (
-                <SplitButton />
-              )}
+            <Stack
+              direction="row"
+              className=" flex items-center justify-end w-full"
+              spacing={2}
+            >
+              {!checked && <SplitButton />}
               {isEditable && (
                 <>
-                  <Button
-                    startIcon={<Edit />}
-                    variant="contained"
-                    color="primary"
-                  >
-                    Editar
-                  </Button>
-                  <button title="Visualizar" className="text-gray-500 hover:text-sky-500">
-                    <Visibility />
-                  </button>
+                  <EditCostCenterModal theRow={row} />
+                  <ViewCostCenterModal theRow={row} />
                 </>
               )}
               <div className="pr-4 flex gap-3 ">
@@ -142,7 +115,6 @@ export default function Table() {
             </Stack>
           </div>
           <DataGridPro
-
             rows={data}
             density="compact"
             sx={{ borderRadius: 0 }}
@@ -154,23 +126,19 @@ export default function Table() {
             onRowClick={(e) => console.log(e)}
             checkboxSelection
             getRowClassName={(params) =>
-              params.indexRelativeToCurrentPage % 2 === 0 && params.id != 'auto-generated-group-footer-root' ? 'even' : 'odd' 
+              params.indexRelativeToCurrentPage % 2 === 0 &&
+              params.id != "auto-generated-group-footer-root"
+                ? "even"
+                : "odd"
             }
             onRowSelectionModelChange={(item) => {
-              setCheckedRows(item)
-              if (item.length > 0 && item.length < 2) {
-                setChecked(true);
-                setEditable(true);
-                console.log(item)
-              } else if (item.length > 1) {
-                setEditable(false);
-                setChecked(true);
-              } else {
-                setChecked(false);
-                setEditable(false);
-              }
+              handleSelection(item);
+              const selectedRowId = item[0]; // Assuming single selection
+              const selectedRow = data.find(
+                (row) => row.id.toString() === selectedRowId
+              );
+                setRow(selectedRow || null);
             }}
-            disableRowSelectionOnClick
           />
         </div>
       </Box>

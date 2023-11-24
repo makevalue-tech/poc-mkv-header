@@ -9,7 +9,7 @@ import {
   RequestQuote,
   Wallet,
 } from "@mui/icons-material";
-import Header from "../Header/Header";
+import Header from "../../components/Header/Header";
 import style from "./Home.module.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../../public/pague-menos-logo-0.png";

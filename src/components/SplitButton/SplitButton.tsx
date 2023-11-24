@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-import CostCenterModal from '../CostCenterModal/CostCenterModal';
+import AddCostCenterModal from '../Modals/CostCenterModals/AddCostCenterModal';
 
 const options = ['Criar', 'Criar 2', 'Criar 3'];
 
@@ -16,12 +16,6 @@ export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
-  const [modalOpen, setModalOpen] = React.useState(false);
-
-  const handleClick = () => {
-    
-  };
 
   const handleMenuItemClick = (
     event: React.MouseEvent<HTMLLIElement, MouseEvent>,
@@ -49,7 +43,7 @@ export default function SplitButton() {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-      <CostCenterModal />
+      <AddCostCenterModal />
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}

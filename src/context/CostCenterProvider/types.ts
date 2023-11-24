@@ -10,6 +10,7 @@ export interface IContext {
     data: ICostCenter[];
     addRow: (descricao: string, centroDeCusto: string, codigoExterno: string) => Promise<void>;
     deleteRow: (id: string) => void;  
+    updateData: (id: string, updatedData: ICostCenter) => void;
 }
 
 export interface ICostCenterProvider {

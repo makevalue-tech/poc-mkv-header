@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import MuiSidebar from "../Sidebar/MuiSidebar";
-import TreeGrid from "../TreeGrid/TreeGrid";
+import MuiSidebar from "../../components/Sidebar/MuiSidebar";
+import TreeGrid from "../../components/TreeGrid/TreeGrid";
 
 function App() {
   return (
