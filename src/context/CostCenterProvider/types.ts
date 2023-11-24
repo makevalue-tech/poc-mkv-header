@@ -5,6 +5,11 @@ export interface ICostCenter {
     centroDeCusto: string;
     codigoExterno: string;
 }
+export interface IUpdatedData {
+    descricao: string;
+    centroDeCusto: string;
+    codigoExterno: string;
+}
 
 export interface IContext {
     data: ICostCenter[];

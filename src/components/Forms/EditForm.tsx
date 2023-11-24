@@ -15,11 +15,11 @@ interface AddFormProps {
 
 const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
 
-  const id = theRow?.id
+  const id = theRow?.id ?? ''
 
-  const [descricao, setDescricao] = useState(theRow?.descricao)
-  const [centroDeCusto, setCentroDeCusto] = useState(theRow?.centroDeCusto)
-  const [codigoExterno, setCodigoExterno] = useState(theRow?.codigoExterno)
+  const [descricao, setDescricao] = useState(theRow?.descricao ?? '')
+  const [centroDeCusto, setCentroDeCusto] = useState(theRow?.centroDeCusto ?? '')
+  const [codigoExterno, setCodigoExterno] = useState(theRow?.codigoExterno ?? '')
   const { updateData } = useContext(CostCenterContext);
 
   const [errorMessages, setErrorMessages] = useState({
@@ -27,11 +27,9 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
     centroDeCusto: "",
     codigoExterno: "",
   });
-  const [newCostCenter, setNewCostCenter] = useState({
-    descricao: "",
-    centroDeCusto: "",
-    codigoExterno: "",
-  });
+
+
+  const updatedData = {id, descricao, centroDeCusto, codigoExterno}
 
 
 
@@ -40,17 +38,17 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
     const errors: ErrorMessages = {};
 
     // Validation for "descricao"
-    if (newCostCenter.descricao.trim() === "") {
+    if (descricao.trim() === "") {
       errors.descricao = "Required Field(*)";
     }
 
     // Validation for "centroDeCusto"
-    if (newCostCenter.centroDeCusto.trim() === "") {
+    if (centroDeCusto.trim() === "") {
       errors.centroDeCusto = "Required Field(*)";
     }
 
     // Validation for "codigoExterno"
-    if (newCostCenter.codigoExterno.trim() === "") {
+    if (codigoExterno.trim() === "") {
       errors.codigoExterno = "Required Field(*)";
     }
     const errorsToSet = {
@@ -67,7 +65,7 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
     ) {
       setErrorMessages(errorsToSet);
     } else {
-      updateData();
+      updateData(id, updatedData);
       handleClose();
     }
   };
@@ -84,6 +82,7 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
     >
       <div className="flex flex-col p-6 justify-center items-center">
         <TextField
+          onChange={(e) => setDescricao(e.target.value)}
           error={errorMessages.descricao.length > 0}
           helperText={errorMessages.descricao}
           name="descricao"
@@ -95,6 +94,7 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
           label="Descrição"
         />
         <TextField
+          onChange={(e) => setCentroDeCusto(e.target.value)}
           error={errorMessages.centroDeCusto.length > 0}
           helperText={errorMessages.centroDeCusto}
           name="centroDeCusto"
@@ -106,6 +106,7 @@ const EditForm: React.FC<AddFormProps> = ({ handleClose , theRow}) => {
           label="Centro de Custo"
         />
         <TextField
+         onChange={(e) => setCodigoExterno(e.target.value)}
           error={errorMessages.codigoExterno.length > 0}
           helperText={errorMessages.codigoExterno}
           name="codigoExterno"
