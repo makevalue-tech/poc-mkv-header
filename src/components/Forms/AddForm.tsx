@@ -35,8 +35,6 @@ const AddForm: React.FC<AddFormProps> = ({ handleClose }) => {
     });
   };
 
-
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const errors: ErrorMessages = {};
@@ -56,16 +54,16 @@ const AddForm: React.FC<AddFormProps> = ({ handleClose }) => {
       errors.codigoExterno = "Required Field(*)";
     }
     const errorsToSet = {
-      descricao: errors.descricao ?? '',
-      centroDeCusto: errors.centroDeCusto ?? '',
-      codigoExterno: errors.codigoExterno ?? '',
+      descricao: errors.descricao ?? "",
+      centroDeCusto: errors.centroDeCusto ?? "",
+      codigoExterno: errors.codigoExterno ?? "",
     };
-  
+
     // Check if any errors exist
     if (
-      errorsToSet.descricao !== '' ||
-      errorsToSet.centroDeCusto !== '' ||
-      errorsToSet.codigoExterno !== ''
+      errorsToSet.descricao !== "" ||
+      errorsToSet.centroDeCusto !== "" ||
+      errorsToSet.codigoExterno !== ""
     ) {
       setErrorMessages(errorsToSet);
     } else {

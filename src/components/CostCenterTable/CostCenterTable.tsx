@@ -57,6 +57,8 @@ export default function CostCenterTable() {
     }
   };
 
+
+
   return (
     <div>
       <Box sx={gridStyle}>

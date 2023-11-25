@@ -18,8 +18,11 @@ const style = {
   borderRadius: 2,
   boxShadow: 24,
 };
+interface SplitButtonProps {
+  // other props...
+}
 
-export default function AddCostCenterModal() {
+const AddCostCenterModal: React.FC<SplitButtonProps> = () => {
   const [open, setOpen] = React.useState(false);
   
 
@@ -59,9 +62,10 @@ export default function AddCostCenterModal() {
             </button>
           </div>
           <Divider className="w-full" />
-         <AddForm handleClose={handleClose} />
+         <AddForm  handleClose={handleClose} />
         </Box>
       </Modal>
     </div>
   );
 }
+export default AddCostCenterModal;

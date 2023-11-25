@@ -6,7 +6,7 @@ function App() {
   return (
     <Box className="flex">
       <MuiSidebar />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
+      <Box component="main" className="bg-slate-100" sx={{ flexGrow: 1, p: 3, pt: 10 }}>
         <TreeGrid />
       </Box>
     </Box>

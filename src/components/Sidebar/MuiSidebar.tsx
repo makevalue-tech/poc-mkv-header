@@ -14,7 +14,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import './MuiSidebar.css'
 import MakeLogo from "../../../public/logo-100px.png";
-import ProfilePicture from "../../../public/8847137.png";
 import {
   Menu,
   Analytics,
@@ -43,6 +42,7 @@ import {
   PhoneArrowDownLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import UserInfoModal from "../Modals/UserInfoModal/userInfoModal";
 
 const drawerWidth = 240;
 
@@ -281,9 +281,7 @@ export default function MuiSidebar() {
                 <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
               </div>
 
-              <div className="rounded-full w-10 h-10 flex justify-center items-center">
-                <img src={ProfilePicture} alt="" className="w-full" />
-              </div>
+              <UserInfoModal />
             </div>
           </div>
         </Toolbar>

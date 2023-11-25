@@ -11,8 +11,11 @@ import MenuList from '@mui/material/MenuList';
 import AddCostCenterModal from '../Modals/CostCenterModals/AddCostCenterModal';
 
 const options = ['Criar', 'Criar 2', 'Criar 3'];
+interface AddFormProps {
+  // other props...
+}
 
-export default function SplitButton() {
+const  SplitButton: React.FC<AddFormProps> = () => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -43,7 +46,7 @@ export default function SplitButton() {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-      <AddCostCenterModal />
+      <AddCostCenterModal/>
         <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
@@ -95,3 +98,5 @@ export default function SplitButton() {
     </React.Fragment>
   );
 }
+
+export default SplitButton;
