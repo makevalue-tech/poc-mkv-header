@@ -42,7 +42,7 @@ import {
   PhoneArrowDownLeftIcon,
 } from "@heroicons/react/20/solid";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import UserInfoModal from "../Modals/UserInfoModal/userInfoModal";
+import UserInfoModal from "../Modals/UserInfoModal/UserInfoModal";
 
 const drawerWidth = 240;
 

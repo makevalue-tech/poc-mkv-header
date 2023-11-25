@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Close } from "@mui/icons-material";
 import ProfilePicture from "../../../../public/8847137.png";
 import { Button } from "@mui/material";
 
