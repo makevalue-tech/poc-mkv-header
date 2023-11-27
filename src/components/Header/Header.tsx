@@ -6,7 +6,6 @@ import { Search, Settings } from "@mui/icons-material";
 import { Toolbar } from "@mui/material";
 import MakeLogo from "../../../public/logo-100px.png";
 import { Link } from "react-router-dom";
-import ProfilePicture from "../../../public/8847137.png";
 import UserInfoModal from "../Modals/UserInfoModal/UserInfoModal";
 
 export default function Header() {
