@@ -19,8 +19,6 @@ export default function Home() {
   return (
     <div>
       <Header />
-    
-
       <div className={style.container}></div>
       <div className={style.appBox}>
         <div className={style.appContainer}>

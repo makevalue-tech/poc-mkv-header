@@ -7,11 +7,12 @@ import { Toolbar } from "@mui/material";
 import MakeLogo from "../../../public/logo-100px.png";
 import { Link } from "react-router-dom";
 import ProfilePicture from "../../../public/8847137.png";
+import UserInfoModal from "../Modals/UserInfoModal/UserInfoModal";
 
 export default function Header() {
   return (
     <div className="border border-b-gray-200 shadow-md">
-      <Toolbar className="bg-white">
+      <Toolbar className="bg-white justify-between md:justify-normal">
         <Link to="/poc-mkv-header/">
           <img
             src={MakeLogo}
@@ -21,8 +22,8 @@ export default function Header() {
           />
         </Link>
 
-        <div className="w-full flex justify-between">
-          <div className="ml-2 flex justify-start items-center">
+        <div className="md:w-full flex justify-between">
+          <div className="hidden md:flex ml-2 justify-start items-center">
             <input
               className="text-gray-500 border-r-0 border w-72 p-2 h-full placeholder:p-1 border-sky-200 pl-2 rounded-l-lg outline-none"
               placeholder="Search..."
@@ -34,18 +35,16 @@ export default function Header() {
 
           <div className="flex items-center justify-around w-72">
             <div className="p-1 bg-sky-200 rounded-md">
-              <PhoneArrowDownLeftIcon className=" text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
+              <PhoneArrowDownLeftIcon className=" text-gray-500 hover:text-sky-400 cursor-pointer w-5 h-5" />
             </div>
             <div className="p-1  bg-sky-200 rounded-md">
-              <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
+              <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-5 h-5" />
             </div>
             <div className="p-1 bg-sky-200 rounded-md">
-              <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
+              <Settings fontSize="small" className="text-gray-500 hover:text-sky-400 cursor-pointer" />
             </div>
 
-            <div className="rounded-full w-10 h-10 flex justify-center items-center">
-              <img src={ProfilePicture} alt="" className="w-full" />
-            </div>
+            <UserInfoModal />
           </div>
         </div>
       </Toolbar>

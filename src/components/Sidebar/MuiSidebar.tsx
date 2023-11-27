@@ -12,7 +12,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import './MuiSidebar.css'
+import "./MuiSidebar.css";
 import MakeLogo from "../../../public/logo-100px.png";
 import {
   Menu,
@@ -241,15 +241,15 @@ export default function MuiSidebar() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed">
-        <Toolbar className="bg-white">
+        <Toolbar className="bg-white justify-between md:justify-between">
           <Link className="flex" to="/poc-mkv-header/">
             <img
               src={MakeLogo}
               alt="logo makevalue"
-              className="mr-5"
+              className="mr-8"
               width={30}
             />
-            <h1 className="text-gray-500 font-bold mr-10">MakeValue</h1>
+            <h1 className="md:flex text-gray-500 hidden font-bold mr-10">MakeValue</h1>
           </Link>
 
           <IconButton
@@ -258,10 +258,12 @@ export default function MuiSidebar() {
             onClick={() => setOpen(!open)}
             edge="start"
           >
-            <Menu className="bg-sky-100 rounded-md" />
+            <div className="mr-0 p-0.5 text-center flex bg-sky-200 rounded-md">
+              <Menu />
+            </div>
           </IconButton>
           <div className="w-full flex justify-between">
-            <div className="ml-2 flex justify-start items-center">
+            <div className="md:flex hidden ml-2 justify-start items-center">
               <input
                 className="text-gray-500 border-r-0 border w-72 h-full placeholder:p-1 border-sky-200 pl-2 rounded-l-lg outline-none"
                 placeholder="Search..."
@@ -270,15 +272,18 @@ export default function MuiSidebar() {
                 <Search fontSize="small" className="text-sky-300 ml-1 " />
               </div>
             </div>
-            <div className="flex items-center justify-around w-72">
+            <div className="flex items-center justify-around w-60 md:w-72">
               <div className="p-1 bg-sky-200 rounded-md">
-                <PhoneArrowDownLeftIcon className=" text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
+                <PhoneArrowDownLeftIcon className=" text-gray-500 hover:text-sky-400 cursor-pointer w-5" />
               </div>
               <div className="p-1  bg-sky-200 rounded-md">
-                <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-6" />
+                <BellAlertIcon className="text-gray-500 hover:text-sky-400 cursor-pointer w-5" />
               </div>
               <div className="p-1 bg-sky-200 rounded-md">
-                <Settings className="text-gray-500 hover:text-sky-400 cursor-pointer" />
+                <Settings
+                  fontSize="small"
+                  className="text-gray-500 hover:text-sky-400 cursor-pointer"
+                />
               </div>
 
               <UserInfoModal />
@@ -298,36 +303,35 @@ export default function MuiSidebar() {
           {products1.map((item) => (
             <NavLink key={item.name} to={item.href}>
               <ListItem
-              className="hover:text-sky-500"
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                className="sideButton"
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
+                className="hover:text-sky-500"
+                disablePadding
+                sx={{ display: "block" }}
               >
-                <ListItemIcon
+                <ListItemButton
+                  className="sideButton"
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  <item.icon className="icon" />
-                </ListItemIcon>
-                <ListItemText
-                  className="menuText"
-                  primary={item.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <item.icon className="icon" />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="menuText"
+                    primary={item.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
             </NavLink>
-            
           ))}
         </List>
         <Divider />
@@ -335,37 +339,35 @@ export default function MuiSidebar() {
           {products2.map((item) => (
             <NavLink key={item.name} to={item.href}>
               <ListItem
-              
-              className="hover:text-sky-500"
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                className="sideButton"
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
+                className="hover:text-sky-500"
+                disablePadding
+                sx={{ display: "block" }}
               >
-                <ListItemIcon
+                <ListItemButton
+                  className="sideButton"
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  <item.icon className="icon" />
-                </ListItemIcon>
-                <ListItemText
-                  className="menuText"
-                  primary={item.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <item.icon className="icon" />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="menuText"
+                    primary={item.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
             </NavLink>
-            
           ))}
         </List>
         <Divider />
@@ -373,36 +375,35 @@ export default function MuiSidebar() {
           {products3.map((item) => (
             <NavLink key={item.name} to={item.href}>
               <ListItem
-              className="hover:text-sky-500"
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                className="sideButton"
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
+                className="hover:text-sky-500"
+                disablePadding
+                sx={{ display: "block" }}
               >
-                <ListItemIcon
+                <ListItemButton
+                  className="sideButton"
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  <item.icon className="icon" />
-                </ListItemIcon>
-                <ListItemText
-                  className="menuText"
-                  primary={item.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <item.icon className="icon" />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="menuText"
+                    primary={item.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
             </NavLink>
-            
           ))}
         </List>
         <Divider />
@@ -415,42 +416,41 @@ export default function MuiSidebar() {
           {register.map((item) => (
             <NavLink key={item.name} to={item.href}>
               <ListItem
-              onClick={() => {navigate(item.href)}}
-              className="hover:text-sky-500"
-              disablePadding
-              sx={{ display: "block" }}
-            >
-              <ListItemButton
-                className="sideButton"
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                onClick={() => {
+                  navigate(item.href);
                 }}
+                className="hover:text-sky-500"
+                disablePadding
+                sx={{ display: "block" }}
               >
-                <ListItemIcon
+                <ListItemButton
+                  className="sideButton"
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  <item.icon className="icon" />
-                </ListItemIcon>
-                <ListItemText
-                  className="menuText"
-                  primary={item.name}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <item.icon className="icon" />
+                  </ListItemIcon>
+                  <ListItemText
+                    className="menuText"
+                    primary={item.name}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
             </NavLink>
-            
           ))}
         </List>
       </Drawer>
-
-      
     </Box>
   );
 }
